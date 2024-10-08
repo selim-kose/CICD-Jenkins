@@ -13,6 +13,7 @@ pipeline {
                 // Checkout code from source control (e.g., Git)
                 checkout scm
             }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
