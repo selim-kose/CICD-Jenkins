@@ -22,6 +22,7 @@ pipeline {
         stage('BUILD') {
             steps {
                 echo 'Building...'
+                sh 'chmod +x mvnw'
                 sh './mvnw clean install'
             }
         }
