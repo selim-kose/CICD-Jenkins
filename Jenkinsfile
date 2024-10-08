@@ -22,7 +22,6 @@ pipeline {
         stage('BUILD') {
             steps {
                 echo 'Building..'
-                ./mvnw package
             }
         }
         stage('Deploy') {
