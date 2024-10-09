@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             // Use the 'docker-agent' label to run this pipeline on a Docker agent
-            label 'docker-agent'
+            label 'own-docker-agent'
         }
     }
     triggers{
