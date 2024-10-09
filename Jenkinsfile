@@ -51,10 +51,5 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        stage('Test installing AWS CLI') {
-            steps {
-                sh 'aws --version'
-            }
-        }
     }
 }
