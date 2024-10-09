@@ -39,12 +39,24 @@ pipeline {
         }
         stage('Archive Artifacts') {
             steps {
-                   echo 'Archiving artifacts...'
+                // Archive the built artifacts (JAR/WAR files)
+                archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+                // Archive test results
+                junit '**/target/surefire-reports/*.xml'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Test installing AWS CLI') {
+            steps {
+                // Install AWS CLI
+                sh 'curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"'
+                sh 'unzip awscli-bundle.zip'
+                sh './awscli-bundle/install -b ~/bin/aws'
+                sh 'aws --version'
             }
         }
     }
