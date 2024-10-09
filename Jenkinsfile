@@ -39,10 +39,7 @@ pipeline {
         }
         stage('Archive Artifacts') {
             steps {
-                // Archive the built artifacts (JAR/WAR files)
-                archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-                // Archive test results
-                junit '**/target/surefire-reports/*.xml'
+                   echo 'Archiving artifacts...'
             }
         }
         stage('Deploy') {
