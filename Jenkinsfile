@@ -14,7 +14,10 @@ pipeline {
             steps {
                 // Install AWS CLI
                 sh 'curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"'
-
+                sh 'chmod 777 awscli-bundle.zip'
+                sh 'unzip awscli-bundle.zip'
+                sh './awscli-bundle/install -b ~/bin/aws'
+                sh 'aws --version'
             }
         }
         stage('Checkout') {
