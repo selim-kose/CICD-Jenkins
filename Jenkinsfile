@@ -51,5 +51,10 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('AWS') {
+            steps {
+                sh 'aws --version'
+            }
+        }
     }
 }
