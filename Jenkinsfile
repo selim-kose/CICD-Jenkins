@@ -30,6 +30,12 @@ pipeline {
                 sh './mvnw clean install'
             }
         }
+        stage('List Target Directory') {
+            steps {
+                // List files in the target directory to verify the build output
+                sh 'ls -al target'
+            }
+        }
         stage('Archive Artifacts') {
             steps {
                 // Archive the built artifacts (JAR/WAR files)
