@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             // Use the 'docker-agent' label to run this pipeline on a Docker agent
-            label 'jenkins-agent'
+            label 'selim'
         }
     }
     triggers{
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('BUILD') {
             steps {
-                echo 'Building...'
+                echo 'Building....'
                 //add execute permission to mvnw
                 sh 'chmod +x mvnw'
                 //use maven wrapper to build the project, mvn is not available in the docker image
