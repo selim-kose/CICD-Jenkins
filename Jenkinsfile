@@ -53,7 +53,9 @@ pipeline {
         }
         stage('AWS') {
             steps {
-                sh 'aws --version'
+                sh 'curl http://httpbin.org/get'
+                // sh 'aws --version'
+
             }
         }
     }
