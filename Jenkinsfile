@@ -34,6 +34,7 @@ pipeline {
             steps {
                 // List files in the target directory to verify the build output
                 sh 'ls -al target'
+                sh 'pwd'
             }
         }
         stage('Archive Artifacts') {
