@@ -55,7 +55,8 @@ pipeline {
             steps {
                 sh 'curl http://httpbin.org/get'
                 sh 'aws --version'
-                sh 'aws s3 cp jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
+                sh 'ls'
+                //sh 'aws s3 cp jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
 
             }
         }
