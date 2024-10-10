@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing...'
             }
         }
         stage('BUILD') {
@@ -54,7 +54,7 @@ pipeline {
         stage('AWS') {
             steps {
                 sh 'curl http://httpbin.org/get'
-                // sh 'aws --version'
+                sh 'aws --version'
 
             }
         }
