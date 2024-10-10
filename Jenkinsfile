@@ -56,7 +56,7 @@ pipeline {
                 sh 'curl http://httpbin.org/get'
                 sh 'aws --version'
                 sh 'ls target'
-                //sh 'aws s3 cp jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
+                sh 'aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
 
             }
         }
