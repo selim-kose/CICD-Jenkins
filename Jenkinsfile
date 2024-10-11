@@ -57,7 +57,7 @@ pipeline {
         }
         stage('AWS') {
             steps {
-/*
+
                 sh '''
                     # Example of using AWS CLI to list S3 buckets
                     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
@@ -66,10 +66,6 @@ pipeline {
                     # Now you can run any AWS CLI commands or SDK calls
                     aws s3 ls
                 '''
-                 */
-
-                 sh 'echo $AWS_ACCESS_KEY_ID'
-                 sh 'echo $AWS_SECRET_ACCESS_KEY'
 
                 //sh 'curl http://httpbin.org/get'
                 //sh 'aws --version'
