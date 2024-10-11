@@ -65,6 +65,7 @@ pipeline {
 
                     # Now you can run any AWS CLI commands or SDK calls
                     aws s3 ls
+                    aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins
                 '''
 
                 //sh 'curl http://httpbin.org/get'
