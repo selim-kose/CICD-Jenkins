@@ -9,6 +9,10 @@ pipeline {
         //Poll SCM every minute
         pollSCM '* * * * *'
     }
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-credentials') // This refers to the Jenkins credentials ID
+        AWS_SECRET_ACCESS_KEY = credentials('aws-credentials') // This will fetch the password as secret
+    }
     stages {
 
         stage('Checkout') {
@@ -53,10 +57,24 @@ pipeline {
         }
         stage('AWS') {
             steps {
-                sh 'curl http://httpbin.org/get'
-                sh 'aws --version'
-                sh 'ls target'
-                sh 'aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
+/*
+                sh '''
+                    # Example of using AWS CLI to list S3 buckets
+                    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+
+                    # Now you can run any AWS CLI commands or SDK calls
+                    aws s3 ls
+                '''
+                 */
+
+                 sh 'echo $AWS_ACCESS_KEY_ID'
+                 sh 'echo $AWS_SECRET_ACCESS_KEY'
+
+                //sh 'curl http://httpbin.org/get'
+                //sh 'aws --version'
+                //sh 'ls target'
+                //sh 'aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
 
             }
         }
