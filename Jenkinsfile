@@ -10,6 +10,9 @@ pipeline {
         pollSCM '* * * * *'
     }
     environment {
+        // Define the environment variables for the pipeline
+        // In this example, we are using Jenkins credentials to store AWS access keys
+        // The AWS Credential plugin will give you both the access key and secret key variables and you dont need to refer to them separately
         AWS_ACCESS_KEY_ID = credentials('aws-credentials') // This refers to the Jenkins credentials ID
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials') // This will fetch the password as secret
     }
@@ -57,7 +60,7 @@ pipeline {
         }
         stage('AWS') {
             steps {
-
+                // Run multiple shell commands to interact with AWS CLI
                 sh '''
                     # Example of using AWS CLI to list S3 buckets
                     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
@@ -68,12 +71,21 @@ pipeline {
                     aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins
                 '''
 
-                //sh 'curl http://httpbin.org/get'
-                //sh 'aws --version'
-                //sh 'ls target'
-                //sh 'aws s3 cp target/jenkins-pipeline-0.0.1-SNAPSHOT.jar s3://selim-jenkins'
-
             }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline finished. Cleaning up...'
+            cleanWs() // Clean workspace
+        }
+        success {
+            echo 'Pipeline succeeded. Sending success notification...'
+            mail to: 'team@example.com', subject: 'Build Successful', body: 'The build was successful!'
+        }
+        failure {
+            echo 'Pipeline failed. Sending failure notification...'
+            mail to: 'team@example.com', subject: 'Build Failed', body: 'The build failed. Please check the logs.'
         }
     }
 }
