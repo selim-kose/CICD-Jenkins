@@ -16,7 +16,7 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('aws-credentials') // This refers to the Jenkins credentials ID
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials') // This will fetch the password as secret
 
-        
+
     }
     stages {
 
@@ -83,11 +83,19 @@ pipeline {
         }
         success {
             echo 'Pipeline succeeded. Sending success notification...'
-            mail to: 'selim.kose.s@gmail.com', subject: 'Build Successful', body: 'The build was successful!'
+            emailext (
+                subject: "Build Succeeded: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: "Good news! The build has succeeded. \n\nYou can find more details at ${env.BUILD_URL}.",
+                to: 'selim.kose.s@example.com'
+            )
         }
         failure {
             echo 'Pipeline failed. Sending failure notification...'
-            mail to: 'selim.kose.s@gmail.com', subject: 'Build Failed', body: 'The build failed. Please check the logs.'
+            emailext (
+                subject: "Build Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: "Unfortunately, the build has failed. \n\nCheck the logs at ${env.BUILD_URL}.",
+                to: 'selim.kose.s@example.com'
+            )
         }
     }
 }
