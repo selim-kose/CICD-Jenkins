@@ -15,6 +15,8 @@ pipeline {
         // The AWS Credential plugin will give you both the access key and secret key variables and you dont need to refer to them separately
         AWS_ACCESS_KEY_ID = credentials('aws-credentials') // This refers to the Jenkins credentials ID
         AWS_SECRET_ACCESS_KEY = credentials('aws-credentials') // This will fetch the password as secret
+
+        
     }
     stages {
 
@@ -81,11 +83,11 @@ pipeline {
         }
         success {
             echo 'Pipeline succeeded. Sending success notification...'
-            mail to: 'team@example.com', subject: 'Build Successful', body: 'The build was successful!'
+            mail to: 'selim.kose.s@gmail.com', subject: 'Build Successful', body: 'The build was successful!'
         }
         failure {
             echo 'Pipeline failed. Sending failure notification...'
-            mail to: 'team@example.com', subject: 'Build Failed', body: 'The build failed. Please check the logs.'
+            mail to: 'selim.kose.s@gmail.com', subject: 'Build Failed', body: 'The build failed. Please check the logs.'
         }
     }
 }
