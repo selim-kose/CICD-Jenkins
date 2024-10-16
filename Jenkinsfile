@@ -5,6 +5,10 @@ pipeline {
             label 'selim'
         }
     }
+    tools {
+        // Use the 'Maven' tool installed on the Jenkins controller
+        maven 'Maven'
+    }
     triggers{
         //Poll SCM every minute
         pollSCM '* * * * *'
@@ -29,6 +33,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
+                // Run the tests using Maven
+                sh 'mvn test'
             }
         }
         stage('BUILD') {
